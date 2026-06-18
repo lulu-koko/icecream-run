@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IceCream Run</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="app" aria-label="IceCream Run 网页小游戏">
+      <canvas id="snowCanvas" class="snow-canvas" aria-hidden="true"></canvas>
+
+      <section id="homeScreen" class="screen home-screen">
+        <div class="doodle-strip" aria-hidden="true">
+          <span>◆</span>
+          <span>●</span>
+          <span>■</span>
+          <span>✦</span>
+          <span>●</span>
+        </div>
+        <p class="top-title">跑 起 来</p>
+        <h1>IceCream Run</h1>
+        <div class="home-ice" aria-hidden="true">
+          <span class="ice-pop">I</span>
+          <span class="ice-cube cube-one"></span>
+          <span class="ice-cube cube-two"></span>
+          <span class="snowball"></span>
+        </div>
+        <label class="user-field">
+          <span>用户 ID</span>
+          <input id="userIdInput" type="text" maxlength="40" autocomplete="username" placeholder="例如：student001">
+        </label>
+        <p id="userIdError" class="form-error" role="alert"></p>
+        <nav class="menu" aria-label="主菜单">
+          <button id="startButton" type="button">开始跑步</button>
+          <button id="helpButton" type="button">玩法说明</button>
+          <button id="rankButton" type="button">排行榜</button>
+        </nav>
+      </section>
+
+      <section id="gameScreen" class="screen game-screen is-hidden" aria-label="游戏画面">
+        <div class="hud">
+          <span id="distanceText">0 / 1000 m</span>
+          <span id="timerText">用时 0.0 s</span>
+          <span id="brainText">脑冻值 0 / 100</span>
+          <span id="bananaText">香蕉 0 / 3</span>
+          <span id="iceText">雪糕 0</span>
+        </div>
+        <canvas id="gameCanvas" width="960" height="540"></canvas>
+        <p class="hint">空格 / 鼠标左键 / 触摸：跳起来</p>
+      </section>
+
+      <dialog id="helpDialog" class="dialog help-dialog">
+        <button class="dialog-close" type="button" data-close aria-label="关闭">×</button>
+        <div class="dialog-doodles" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <h2>玩法说明</h2>
+        <div class="rule-list">
+          <p><strong>目标</strong><span>一路向前跑，冲到 1000 米即通关。</span></p>
+          <p><strong>雪糕</strong><span>吃到雪糕会短暂加速，但脑冻值会上升，满 100 失败。</span></p>
+          <p><strong>香蕉</strong><span>踩到香蕉皮会增加失误次数，累计 3 次失败。</span></p>
+        </div>
+      </dialog>
+
+      <dialog id="rankDialog" class="dialog rank-dialog">
+        <button class="dialog-close" type="button" data-close aria-label="关闭">×</button>
+        <div class="dialog-doodles" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <h2>排行榜</h2>
+        <ol id="rankList" class="rank-list"></ol>
+        <p id="emptyRank" class="empty-rank">暂无成绩。</p>
+      </dialog>
+
+      <section id="resultPanel" class="result-panel is-hidden" aria-live="polite">
+        <div class="result-sticker" aria-hidden="true"></div>
+        <h2 id="resultTitle">跑完啦</h2>
+        <p id="resultText"></p>
+        <div id="resultStats" class="result-stats"></div>
+        <p id="scoreStatus" class="score-status"></p>
+        <div class="result-actions">
+          <button id="restartButton" type="button">再跑一次</button>
+          <button id="homeButton" type="button">回首页</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./game.js"></script>
+  </body>
+</html>

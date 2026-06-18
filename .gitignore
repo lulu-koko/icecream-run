@@ -1,0 +1,8 @@
+/.idea/
+/.tools/
+/target/
+/data/
+/dist/
+/assets/
+*.zip
+*.log
